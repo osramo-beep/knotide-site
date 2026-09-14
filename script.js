@@ -1,8 +1,8 @@
-// Knotide Bio — comportamento do site
+// Knotide Bio — site behaviour
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Menu móvel
+// Mobile menu
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 
@@ -18,7 +18,7 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
-// Envio do formulário de contacto (Formspree, plano gratuito)
+// Contact form submission (Formspree, free plan)
 const form = document.getElementById('contactForm');
 
 form.addEventListener('submit', async (event) => {
@@ -27,7 +27,7 @@ form.addEventListener('submit', async (event) => {
   status.className = 'form-note';
 
   if (form.action.includes('SUBSTITUIR_PELO_SEU_ID')) {
-    status.textContent = 'Formulário ainda não configurado. Envie um email diretamente para geral@knotidebio.pt.';
+    status.textContent = 'Form not configured yet. Please email info@knotidebio.pt directly.';
     form.appendChild(status);
     return;
   }
@@ -40,12 +40,12 @@ form.addEventListener('submit', async (event) => {
     });
     if (response.ok) {
       form.reset();
-      status.textContent = 'Mensagem enviada. Obrigado pelo contacto.';
+      status.textContent = 'Message sent. Thank you for reaching out.';
     } else {
-      status.textContent = 'Não foi possível enviar. Tente novamente ou escreva para geral@knotidebio.pt.';
+      status.textContent = 'Could not send the message. Please try again or email info@knotidebio.pt.';
     }
   } catch (err) {
-    status.textContent = 'Não foi possível enviar. Tente novamente ou escreva para geral@knotidebio.pt.';
+    status.textContent = 'Could not send the message. Please try again or email info@knotidebio.pt.';
   }
   form.appendChild(status);
 });
