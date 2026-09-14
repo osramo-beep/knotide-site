@@ -9,18 +9,19 @@
   --ink:        #1B2740;   /* deep navy — headings, primary text */
   --ink-deep:   #101828;   /* near-black navy — buttons */
   --ink-soft:   #2A3A57;
-  --paper:      #F9FAFC;   /* base — near-white, cool cast */
-  --paper-dim:  #E7EEF3;   /* pale blue tint */
-  --paper-mint: #ECE8F4;   /* pale lavender tint */
+  --paper:      #EDF1F5;   /* base — light cool grey, more contrast against white cards */
+  --paper-dim:  #E1EAF0;   /* pale blue tint */
+  --paper-mint: #E7E1F1;   /* pale lavender tint */
   --card:       #FFFFFF;
   --accent:     #1B6E63;   /* teal — small accents/labels only */
+  --accent-bright: #0F9C86; /* vivid teal — logo, nav highlights */
   --accent-dark:#134F47;
   --mint:       #9FCBBE;
   --slate:      #5C6B80;
   --slate-on-ink: #5C6B80;
-  --line:       #E2E8EF;
-  --line-on-ink: #E2E8EF;
-  --shadow: 0 1px 2px rgba(16,24,40,0.04), 0 10px 28px rgba(16,24,40,0.07);
+  --line:       #DCE4EB;
+  --line-on-ink: #DCE4EB;
+  --shadow: 0 1px 2px rgba(16,24,40,0.05), 0 10px 28px rgba(16,24,40,0.09);
 
   --font-display: "Fraunces", Georgia, serif;
   --font-body: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -106,11 +107,12 @@ header {
 .logo {
   font-family: var(--font-display);
   font-size: 1.25rem;
+  font-weight: 600;
   color: var(--ink);
   text-decoration: none;
   letter-spacing: -0.01em;
 }
-.logo span { color: var(--accent); }
+.logo span { color: var(--accent-bright); }
 
 .nav-links {
   display: flex;
@@ -119,12 +121,13 @@ header {
   margin: 0; padding: 0;
 }
 .nav-links a {
-  color: var(--slate);
+  color: var(--ink);
+  font-weight: 500;
   text-decoration: none;
   font-size: 0.95rem;
   transition: color 0.15s ease;
 }
-.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover { color: var(--accent-bright); }
 
 .nav-cta {
   background: var(--ink-deep);
@@ -284,7 +287,7 @@ header {
 .design-copy p { color: var(--slate); font-size: 1.02rem; }
 
 .molecule-frame {
-  background: var(--card);
+  background: radial-gradient(circle at 32% 28%, #1B3A3C 0%, #0D1E22 65%, #0A171A 100%);
   box-shadow: var(--shadow);
   border-radius: 14px;
   aspect-ratio: 1 / 1;
@@ -338,24 +341,21 @@ header {
 .foco-inicial p { margin: 0; color: var(--slate); font-size: 1rem; }
 .foco-inicial em { color: var(--ink); font-style: italic; }
 
-/* ---------- Services ---------- */
-.servicos-lista {
-  list-style: none;
-  margin: 0; padding: 0;
+/* ---------- Services (card grid, same language as Applications) ---------- */
+.servicos-grid {
   display: grid;
-  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(20px, 3vw, 28px);
 }
-.servicos-lista li {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 2rem;
-  padding: 1.6rem 1.8rem;
+.servico-card {
   background: var(--card);
   box-shadow: var(--shadow);
   border-radius: 14px;
+  padding: 1.8rem 1.9rem;
+  border-top: 3px solid var(--accent);
 }
-.servicos-lista h3 { font-size: 1.1rem; margin: 0; }
-.servicos-lista p { color: var(--slate); margin: 0; font-size: 0.98rem; }
+.servico-card h3 { font-size: 1.15rem; margin-bottom: 0.4em; }
+.servico-card p { color: var(--slate); margin: 0; font-size: 0.98rem; }
 
 /* ---------- Team ---------- */
 .team-stats {
@@ -446,6 +446,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .design-split { grid-template-columns: 1fr; }
   .pipeline { grid-template-columns: 1fr 1fr; }
   .pilares { grid-template-columns: 1fr; }
+  .servicos-grid { grid-template-columns: 1fr; }
   .foco-inicial { grid-template-columns: 1fr; }
   .servicos-lista li { grid-template-columns: 1fr; gap: 0.4rem; }
 
