@@ -32,12 +32,12 @@
     camera.updateProjectionMatrix();
   }
 
-  // Lighting — cooler, higher-contrast studio setup for a dark backdrop
-  scene.add(new THREE.HemisphereLight(0xdfeeea, 0x0a1418, 0.55));
-  const key = new THREE.DirectionalLight(0xffffff, 1.15);
+  // Lighting — bright, neutral studio setup for a light backdrop
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xc9dbd6, 0.85));
+  const key = new THREE.DirectionalLight(0xffffff, 1.05);
   key.position.set(4, 5, 6);
   scene.add(key);
-  const fill = new THREE.DirectionalLight(0x6fd9c4, 0.45);
+  const fill = new THREE.DirectionalLight(0xbfe1d9, 0.5);
   fill.position.set(-5, -2, -4);
   scene.add(fill);
 
@@ -61,11 +61,9 @@
   surfaceGeo.computeVertexNormals();
 
   const surfaceMat = new THREE.MeshStandardMaterial({
-    color: 0xe6f1ee,
-    roughness: 0.42,
-    metalness: 0.02,
-    transparent: true,
-    opacity: 0.97
+    color: 0x2C4744,
+    roughness: 0.5,
+    metalness: 0.04
   });
   group.add(new THREE.Mesh(surfaceGeo, surfaceMat));
 
@@ -82,17 +80,17 @@
   const curve = new THREE.CatmullRomCurve3(loopPoints, true, 'catmullrom', 0.4);
   const tubeGeo = new THREE.TubeGeometry(curve, 220, 0.075, 14, true);
   const tubeMat = new THREE.MeshStandardMaterial({
-    color: 0x2fbfa8,
-    roughness: 0.3,
-    metalness: 0.15,
-    emissive: 0x0c3a33,
-    emissiveIntensity: 0.35
+    color: 0x0F9C86,
+    roughness: 0.28,
+    metalness: 0.12,
+    emissive: 0x063028,
+    emissiveIntensity: 0.25
   });
   group.add(new THREE.Mesh(tubeGeo, tubeMat));
 
   // Residue accent points along the loop
   const accentGeo = new THREE.SphereGeometry(0.11, 20, 20);
-  const accentMat = new THREE.MeshStandardMaterial({ color: 0xd7f3ec, roughness: 0.35 });
+  const accentMat = new THREE.MeshStandardMaterial({ color: 0xBFE7DD, roughness: 0.35 });
   [0, 2, 4].forEach(function (i) {
     const dot = new THREE.Mesh(accentGeo, accentMat);
     dot.position.copy(loopPoints[i]);
