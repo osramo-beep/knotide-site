@@ -351,8 +351,54 @@ header {
   border-radius: 14px;
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  position: relative;
+  cursor: grab;
 }
-#molecule-canvas { width: 100%; height: 100%; display: block; }
+.molecule-frame:active { cursor: grabbing; }
+#molecule-canvas { width: 100%; height: 100%; display: block; touch-action: none; }
+.molecule-legend {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(4px);
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.78rem;
+  color: var(--ink);
+  pointer-events: none;
+}
+.molecule-legend span { display: flex; align-items: center; gap: 0.5rem; }
+.molecule-legend .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot-body { background: #C9C5E3; }
+.dot-site { background: #4FA8E0; }
+.dot-peptide { background: #E0327A; }
+
+.molecule-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.mol-btn {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.mol-btn:hover { border-color: var(--accent); color: var(--accent-dark); }
+.mol-btn[aria-pressed="false"] { color: var(--accent); border-color: var(--accent); }
+.mol-btn-icon { padding: 0.5rem 0.9rem; line-height: 1; }
+
 .molecule-caption {
   margin: 0.8rem 0 0;
   font-size: 0.82rem;

@@ -144,9 +144,20 @@
         </div>
         <div class="design-visual">
           <div class="molecule-frame">
-            <canvas id="molecule-canvas" aria-label="Rotating illustrative model of a designed peptide docked at a target binding surface" role="img"></canvas>
+            <canvas id="molecule-canvas" aria-label="Interactive rotating 3D model of a designed peptide docked at a target binding surface" role="img"></canvas>
+            <div class="molecule-legend">
+              <span><i class="dot dot-body"></i>Target surface</span>
+              <span><i class="dot dot-site"></i>Binding region</span>
+              <span><i class="dot dot-peptide"></i>Peptide ligand</span>
+            </div>
           </div>
-          <p class="molecule-caption">Illustrative structural rendering, conceptual and not experimental data.</p>
+          <div class="molecule-controls">
+            <button type="button" id="molRotateToggle" class="mol-btn" aria-pressed="true">Pause rotation</button>
+            <button type="button" id="molReset" class="mol-btn">Reset view</button>
+            <button type="button" id="molZoomOut" class="mol-btn mol-btn-icon" aria-label="Zoom out">&minus;</button>
+            <button type="button" id="molZoomIn" class="mol-btn mol-btn-icon" aria-label="Zoom in">+</button>
+          </div>
+          <p class="molecule-caption">Illustrative structural rendering, conceptual and not experimental data. Drag to rotate, scroll or use the buttons to zoom.</p>
         </div>
       </div>
     </div>
