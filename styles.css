@@ -57,7 +57,7 @@ h1, h2, h3, h4 {
   color: var(--ink);
 }
 
-p { margin: 0 0 1em; max-width: 62ch; }
+p { margin: 0 0 1em; max-width: 62ch; text-align: justify; text-justify: inter-word; hyphens: auto; }
 a { color: inherit; }
 
 .container {
@@ -294,6 +294,20 @@ header {
   height: clamp(220px, 32vw, 380px);
 }
 .photo-band .photo-duotone { position: absolute; inset: 0; }
+.photo-band-light { overflow: hidden; }
+.photo-band-light img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.band-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(16,24,40,0.62) 0%, rgba(16,24,40,0.08) 60%, transparent 100%);
+}
 .photo-band-caption {
   position: absolute;
   inset: 0;
@@ -457,18 +471,12 @@ header {
   box-shadow: var(--shadow);
   border-radius: 14px;
   padding: clamp(1.8rem, 4vw, 2.6rem);
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: clamp(1.6rem, 4vw, 2.8rem);
-  align-items: center;
 }
-.example-visual svg { width: 100%; height: auto; display: block; }
-.example-loop { stroke-dasharray: 140; stroke-dashoffset: 140; animation: draw 2.2s cubic-bezier(.4,0,.2,1) forwards; animation-delay: 0.2s; }
 .example-copy p { color: var(--slate); font-size: 1.02rem; margin-bottom: 0.9em; }
 .example-copy p:last-child { margin-bottom: 0; }
 .example-note { font-size: 0.95rem !important; color: var(--slate); }
 .example-note em { color: var(--ink); font-style: italic; }
-.example-copy .foco-tag { margin-bottom: 1rem; }
+.example-copy .foco-tag { margin-bottom: 1rem; display: inline-block; }
 
 /* ---------- Funding & partnerships ---------- */
 .funding-panel {
@@ -499,21 +507,23 @@ header {
   border-radius: 10px;
 }
 
-/* ---------- Services (plain list, thin dividers, no cards) ---------- */
+/* ---------- Services (vertical white cards) ---------- */
 .servicos-lista {
   list-style: none;
   margin: 0; padding: 0;
-  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 .servicos-lista li {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 2.5rem;
-  padding: 1.9rem 0;
-  border-bottom: 1px solid var(--line);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  border-radius: 14px;
+  padding: 1.8rem 2rem;
+  border-left: 3px solid var(--accent);
 }
-.servicos-lista h3 { font-size: 1.12rem; margin: 0; }
-.servicos-lista p { color: var(--slate); margin: 0; font-size: 0.98rem; }
+.servicos-lista h3 { font-size: 1.12rem; margin: 0 0 0.4em; }
+.servicos-lista p { color: var(--slate); margin: 0; font-size: 0.98rem; max-width: none; }
 
 /* ---------- Team ---------- */
 .team-stats {
@@ -535,6 +545,43 @@ header {
 
 .team-copy { max-width: 74ch; }
 .team-copy p { color: var(--slate); font-size: 1.03rem; max-width: none; }
+
+.expertise-block { margin: 3rem 0; }
+.expertise-label {
+  font-size: 0.85rem;
+  color: var(--slate);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+}
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.1rem;
+}
+.expertise-item {
+  background: var(--card);
+  box-shadow: var(--shadow);
+  border-radius: 14px;
+  padding: 1.6rem 1.4rem;
+}
+.expertise-emoji { font-size: 1.6rem; display: block; margin-bottom: 0.7rem; }
+.expertise-item h3 {
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin-bottom: 0.9em;
+}
+.expertise-item ul { list-style: none; margin: 0; padding: 0; }
+.expertise-item li {
+  font-size: 0.9rem;
+  color: var(--slate);
+  padding: 0.4em 0;
+  border-top: 1px solid var(--line);
+}
+.expertise-item li:first-child { border-top: none; }
 
 /* ---------- Contact ---------- */
 .contacto .container {
@@ -606,10 +653,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .pipeline { grid-template-columns: 1fr 1fr; }
   .pilares { grid-template-columns: 1fr; }
   .foco-inicial { grid-template-columns: 1fr; }
-  .servicos-lista li { grid-template-columns: 1fr; gap: 0.5rem; }
+  .servicos-lista li { padding: 1.5rem 1.4rem; }
   .species-grid { grid-template-columns: repeat(3, 1fr); }
+  .expertise-grid { grid-template-columns: 1fr 1fr; }
   .example-panel { grid-template-columns: 1fr; }
-  .example-visual { max-width: 200px; margin: 0 auto; }
   .funding-panel { grid-template-columns: 1fr; }
 
   .nav-links { display: none; }
@@ -638,4 +685,5 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media (max-width: 560px) {
   .pipeline { grid-template-columns: 1fr; }
   .species-grid { grid-template-columns: repeat(2, 1fr); }
+  .expertise-grid { grid-template-columns: 1fr; }
 }

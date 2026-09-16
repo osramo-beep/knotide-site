@@ -61,9 +61,9 @@
   surfaceGeo.computeVertexNormals();
 
   const surfaceMat = new THREE.MeshStandardMaterial({
-    color: 0x2C4744,
-    roughness: 0.5,
-    metalness: 0.04
+    color: 0xC9C5E3,
+    roughness: 0.55,
+    metalness: 0.02
   });
   group.add(new THREE.Mesh(surfaceGeo, surfaceMat));
 
@@ -80,13 +80,27 @@
   const curve = new THREE.CatmullRomCurve3(loopPoints, true, 'catmullrom', 0.4);
   const tubeGeo = new THREE.TubeGeometry(curve, 220, 0.075, 14, true);
   const tubeMat = new THREE.MeshStandardMaterial({
-    color: 0x0F9C86,
+    color: 0xE0327A,
     roughness: 0.28,
     metalness: 0.12,
-    emissive: 0x063028,
-    emissiveIntensity: 0.25
+    emissive: 0x4A0F2C,
+    emissiveIntensity: 0.2
   });
   group.add(new THREE.Mesh(tubeGeo, tubeMat));
+
+  // Contact rim — highlights the interaction patch on the target surface
+  const rimGeo = new THREE.TorusGeometry(0.62, 0.045, 12, 48, Math.PI * 1.3);
+  const rimMat = new THREE.MeshStandardMaterial({
+    color: 0x3FA9F5,
+    roughness: 0.3,
+    metalness: 0.15,
+    emissive: 0x0B3A5C,
+    emissiveIntensity: 0.25
+  });
+  const rim = new THREE.Mesh(rimGeo, rimMat);
+  rim.position.set(1.25, 0.05, 0.15);
+  rim.rotation.set(0.3, 0.6, 0.2);
+  group.add(rim);
 
   // Residue accent points along the loop
   const accentGeo = new THREE.SphereGeometry(0.11, 20, 20);
