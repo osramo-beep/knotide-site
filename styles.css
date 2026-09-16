@@ -207,27 +207,15 @@ header {
 .btn-ghost:hover { border-color: var(--ink); }
 
 .hero-art { position: relative; }
-.hero-art svg { width: 100%; height: auto; display: block; }
+.hero-art img {
+  width: 100%;
+  aspect-ratio: 701 / 768;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
 
-.molecule-path {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-dasharray: 900;
-  stroke-dashoffset: 900;
-  animation: draw 2.6s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay: 0.3s;
-}
-.molecule-path.alt { stroke: var(--ink); opacity: 0.55; animation-delay: 0.7s; }
-.molecule-dot {
-  fill: var(--accent-dark);
-  opacity: 0;
-  animation: fadein 0.6s ease forwards;
-  animation-delay: 2.2s;
-}
-@keyframes draw { to { stroke-dashoffset: 0; } }
-@keyframes fadein { to { opacity: 1; } }
 
 /* ---------- Stats band ---------- */
 .stats {
@@ -626,15 +614,13 @@ header {
 footer {
   background: var(--paper-mint);
   color: var(--slate);
-  padding: 2.4rem 0;
-  font-size: 0.88rem;
+  padding: 1.4rem 0;
 }
 footer .container {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
+  justify-content: flex-end;
 }
+footer .footer-copy { font-size: 0.76rem; color: var(--slate); text-align: right; }
 footer a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 footer a:hover { color: var(--accent); }
 
