@@ -57,7 +57,7 @@ h1, h2, h3, h4 {
   color: var(--ink);
 }
 
-p { margin: 0 0 1em; max-width: 62ch; text-align: justify; text-justify: inter-word; hyphens: auto; }
+p { margin: 0 0 1em; max-width: 62ch; text-align: left; }
 a { color: inherit; }
 
 .container {
@@ -120,7 +120,7 @@ header {
   text-decoration: none;
   letter-spacing: -0.01em;
 }
-.logo-icon { width: 30px; height: 30px; flex-shrink: 0; }
+.logo-icon { width: 40px; height: 40px; flex-shrink: 0; object-fit: contain; }
 .logo-accent { color: var(--accent-bright); }
 
 .nav-links {
@@ -565,14 +565,15 @@ header {
   box-shadow: var(--shadow);
   border-radius: 14px;
   padding: 1.6rem 1.4rem;
+  border-top: 3px solid var(--accent);
 }
-.expertise-emoji { font-size: 1.6rem; display: block; margin-bottom: 0.7rem; }
 .expertise-item h3 {
   font-size: 0.92rem;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   color: var(--ink);
   margin-bottom: 0.9em;
+  margin-top: 0.4em;
 }
 .expertise-item ul { list-style: none; margin: 0; padding: 0; }
 .expertise-item li {
@@ -634,6 +635,8 @@ footer .container {
   flex-wrap: wrap;
   gap: 1rem;
 }
+footer a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+footer a:hover { color: var(--accent); }
 
 /* ---------- Keyboard focus ---------- */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
