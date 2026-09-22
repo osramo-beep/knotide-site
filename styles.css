@@ -363,7 +363,7 @@ header {
 .design-copy p { color: var(--slate); font-size: 1.02rem; }
 
 .molecule-frame {
-  background: var(--card);
+  background: #D8DEE9;
   box-shadow: var(--shadow);
   border-radius: 14px;
   aspect-ratio: 1 / 1;
@@ -390,9 +390,8 @@ header {
 }
 .molecule-legend span { display: flex; align-items: center; gap: 0.5rem; }
 .molecule-legend .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-.dot-body { background: #C9C5E3; }
-.dot-site { background: #4FA8E0; }
-.dot-peptide { background: #E0327A; }
+.dot-body { background: #2E6FBF; }
+.dot-peptide { background: #E08A2E; }
 
 .molecule-controls {
   display: flex;

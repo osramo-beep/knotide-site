@@ -53,115 +53,30 @@
   group.rotation.y = DEFAULT_ROT.y;
   scene.add(group);
 
-  // ---------- Protein surface, with a highlighted binding patch ----------
-  const BODY_COLOR = new THREE.Color(0xC9C5E3);
-  const SITE_COLOR = new THREE.Color(0x4FA8E0);
+  // ---------- Protein-peptide docking render, textured on a card ----------
+  // A single illustrative image (protein surface in blue, peptide ligand
+  // docked in orange) mapped onto a plane so it can keep rotating, and be
+  // dragged and zoomed, exactly like the previous procedural model.
+  const BG_COLOR = 0xd8dee9;
+  renderer.setClearColor(BG_COLOR, 1);
 
-  const surfaceGeo = new THREE.IcosahedronGeometry(1.55, 4);
-  const posAttr = surfaceGeo.attributes.position;
-  const v = new THREE.Vector3();
-  const colors = new Float32Array(posAttr.count * 3);
-  const tmpColor = new THREE.Color();
-
-  for (let i = 0; i < posAttr.count; i++) {
-    v.fromBufferAttribute(posAttr, i);
-    const n = v.clone().normalize();
-    const bump =
-      Math.sin(n.x * 5.2 + n.y * 3.1) * 0.08 +
-      Math.sin(n.y * 6.7 + n.z * 4.4) * 0.06 +
-      Math.sin(n.z * 4.1 + n.x * 7.3) * 0.05;
-    v.addScaledVector(n, bump);
-    posAttr.setXYZ(i, v.x, v.y, v.z);
-
-    // Binding patch: an organic region on the +x / +y face of the blob,
-    // where the peptide ligand docks.
-    const patchScore = n.x * 0.75 + n.y * 0.2 + bump * 1.6;
-    const t = THREE.MathUtils.smoothstep(patchScore, 0.28, 0.55);
-    tmpColor.copy(BODY_COLOR).lerp(SITE_COLOR, t);
-    colors[i * 3] = tmpColor.r;
-    colors[i * 3 + 1] = tmpColor.g;
-    colors[i * 3 + 2] = tmpColor.b;
-  }
-  surfaceGeo.computeVertexNormals();
-  surfaceGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-  const surfaceMat = new THREE.MeshStandardMaterial({
-    vertexColors: true,
-    roughness: 0.55,
-    metalness: 0.02
+  const textureLoader = new THREE.TextureLoader();
+  const imgAspect = 1000 / 562;
+  const planeHeight = 2.6;
+  const planeWidth = planeHeight * imgAspect;
+  const planeGeo = new THREE.PlaneGeometry(planeWidth, planeHeight);
+  const planeMat = new THREE.MeshBasicMaterial({
+    color: 0xffffff,
+    side: THREE.DoubleSide
   });
-  group.add(new THREE.Mesh(surfaceGeo, surfaceMat));
+  const plane = new THREE.Mesh(planeGeo, planeMat);
+  group.add(plane);
 
-  // ---------- Peptide ligand: a tangled backbone with side chains ----------
-  const peptideGroup = new THREE.Group();
-  group.add(peptideGroup);
-
-  const PEPTIDE_COLOR = 0xE0327A;
-  const backboneMat = new THREE.MeshStandardMaterial({
-    color: PEPTIDE_COLOR,
-    roughness: 0.3,
-    metalness: 0.1,
-    emissive: 0x4A0F2C,
-    emissiveIntensity: 0.18
-  });
-  const residueMat = new THREE.MeshStandardMaterial({
-    color: 0xF6D9E6,
-    roughness: 0.4
-  });
-
-  const backbonePoints = [
-    new THREE.Vector3(1.28, 0.55, 0.55),
-    new THREE.Vector3(1.55, 0.85, 0.70),
-    new THREE.Vector3(1.82, 0.62, 0.42),
-    new THREE.Vector3(1.95, 0.28, 0.62),
-    new THREE.Vector3(1.72, 0.05, 0.85),
-    new THREE.Vector3(1.55, 0.30, 1.05),
-    new THREE.Vector3(1.78, 0.55, 1.15),
-    new THREE.Vector3(2.05, 0.40, 0.95),
-    new THREE.Vector3(2.18, 0.10, 0.65),
-    new THREE.Vector3(1.98, -0.15, 0.40)
-  ];
-  const backboneCurve = new THREE.CatmullRomCurve3(backbonePoints, false, 'catmullrom', 0.35);
-  const backboneGeo = new THREE.TubeGeometry(backboneCurve, 220, 0.045, 10, false);
-  peptideGroup.add(new THREE.Mesh(backboneGeo, backboneMat));
-
-  // Residue markers along the backbone
-  const residueGeo = new THREE.SphereGeometry(0.065, 14, 14);
-  backbonePoints.forEach(function (p) {
-    const dot = new THREE.Mesh(residueGeo, residueMat);
-    dot.position.copy(p);
-    peptideGroup.add(dot);
-  });
-
-  // Side-chain "sticks" radiating outward from the backbone, echoing
-  // the tangled, wireframe-like look of a licorice-style peptide render.
-  const sideChainOffsets = [
-    [0.20, 0.22, -0.10], [-0.15, 0.28, 0.18], [0.24, -0.12, 0.20],
-    [0.10, 0.30, -0.22], [-0.22, 0.10, -0.18], [0.18, -0.22, -0.15],
-    [0.26, 0.08, 0.22], [-0.12, -0.24, 0.16], [0.14, 0.24, 0.24],
-    [-0.20, 0.16, -0.20]
-  ];
-  const stickMat = new THREE.MeshStandardMaterial({
-    color: PEPTIDE_COLOR,
-    roughness: 0.35,
-    metalness: 0.08
-  });
-  backbonePoints.forEach(function (p, idx) {
-    const offset = sideChainOffsets[idx % sideChainOffsets.length];
-    const dir = new THREE.Vector3(offset[0], offset[1], offset[2]);
-    const len = dir.length();
-    const end = p.clone().add(dir);
-    const mid = p.clone().add(end).multiplyScalar(0.5);
-
-    const stickGeo = new THREE.CylinderGeometry(0.016, 0.016, len, 6);
-    const stick = new THREE.Mesh(stickGeo, stickMat);
-    stick.position.copy(mid);
-    stick.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.clone().normalize());
-    peptideGroup.add(stick);
-
-    const tip = new THREE.Mesh(new THREE.SphereGeometry(0.03, 8, 8), stickMat);
-    tip.position.copy(end);
-    peptideGroup.add(tip);
+  textureLoader.load('images/molecule-docking-render.webp', function (tex) {
+    if ('colorSpace' in tex) tex.colorSpace = THREE.SRGBColorSpace;
+    else if ('encoding' in tex) tex.encoding = THREE.sRGBEncoding;
+    planeMat.map = tex;
+    planeMat.needsUpdate = true;
   });
 
   resize();
