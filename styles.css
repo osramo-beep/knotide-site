@@ -359,6 +359,7 @@ header {
   align-items: center;
 }
 .design-copy h3 { font-size: 1.4rem; }
+.design-copy h4 { font-size: 1.15rem; margin-top: 1.6rem; }
 .design-copy p { color: var(--slate); font-size: 1.02rem; }
 
 .molecule-frame {
