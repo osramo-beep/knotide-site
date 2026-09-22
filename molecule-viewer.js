@@ -163,10 +163,14 @@
     return;
   }
 
+  let swayTime = 0;
+  const SWAY_RANGE = 0.32; // ~18 degrees either side -- stays close to face-on, never edge-on
+  const SWAY_SPEED = 0.012;
   function animate() {
     requestAnimationFrame(animate);
     if (autoRotate && !isDragging) {
-      group.rotation.y += 0.0035;
+      swayTime += SWAY_SPEED;
+      group.rotation.y = DEFAULT_ROT.y + Math.sin(swayTime) * SWAY_RANGE;
     }
     renderer.render(scene, camera);
   }
