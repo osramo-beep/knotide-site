@@ -363,10 +363,10 @@ header {
 .design-copy p { color: var(--slate); font-size: 1.02rem; }
 
 .molecule-frame {
-  background: #D8DEE9;
+  background: #15171c;
   box-shadow: var(--shadow);
   border-radius: 14px;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 760 / 584;
   overflow: hidden;
   position: relative;
   cursor: grab;
