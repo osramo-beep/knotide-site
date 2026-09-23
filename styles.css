@@ -560,9 +560,14 @@ header {
 .example-copy .foco-tag { margin-bottom: 1rem; display: inline-block; }
 .example-panel {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: clamp(20px, 3vw, 36px);
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(28px, 4vw, 48px);
   align-items: start;
+}
+.example-figures-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 .example-figure-col { margin: 0; }
 .example-figure-col img {
@@ -576,11 +581,15 @@ header {
   color: var(--slate);
   font-style: italic;
   max-width: none;
-  margin: 0.6rem 0 0;
+  margin: 0.7rem 0 0;
+  text-align: center;
 }
 @media (max-width: 900px) {
   .example-panel { grid-template-columns: 1fr; }
-  .example-figure-col { max-width: 340px; margin: 0 auto; }
+  .example-figures { max-width: 480px; margin: 0 auto; }
+}
+@media (max-width: 560px) {
+  .example-figures-row { grid-template-columns: 1fr; }
 }
 
 /* ---------- Funding & partnerships ---------- */
