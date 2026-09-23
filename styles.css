@@ -560,13 +560,12 @@ header {
 .example-copy .foco-tag { margin-bottom: 1rem; display: inline-block; }
 .example-panel {
   display: grid;
-  grid-template-columns: 1fr 260px;
-  gap: clamp(28px, 4vw, 56px);
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(20px, 3vw, 36px);
   align-items: start;
 }
-.example-figures { display: flex; flex-direction: column; gap: 0.7rem; }
-.example-figures figure { margin: 0; }
-.example-figures img {
+.example-figure-col { margin: 0; }
+.example-figure-col img {
   width: 100%;
   display: block;
   border-radius: 10px;
@@ -577,11 +576,11 @@ header {
   color: var(--slate);
   font-style: italic;
   max-width: none;
-  margin: 0.2rem 0 0;
+  margin: 0.6rem 0 0;
 }
 @media (max-width: 900px) {
   .example-panel { grid-template-columns: 1fr; }
-  .example-figures { max-width: 340px; margin: 0 auto; }
+  .example-figure-col { max-width: 340px; margin: 0 auto; }
 }
 
 /* ---------- Funding & partnerships ---------- */
