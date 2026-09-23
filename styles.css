@@ -357,7 +357,7 @@ header {
 .design-copy p { color: var(--slate); font-size: 1.02rem; }
 
 .molecule-frame {
-  background: #15171c;
+  background: #F6F7F9;
   box-shadow: var(--shadow);
   border-radius: 14px;
   aspect-ratio: 1 / 1;
@@ -410,7 +410,7 @@ header {
   width: 2px;
   height: 38px;
   margin-top: 3px;
-  background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.55) 0 5px, transparent 5px 10px);
+  background: repeating-linear-gradient(to bottom, rgba(60,70,90,0.65) 0 5px, transparent 5px 10px);
   position: relative;
 }
 .block-arrow::after {
@@ -421,7 +421,7 @@ header {
   transform: translateX(-50%);
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 7px solid rgba(255,255,255,0.55);
+  border-top: 7px solid rgba(60,70,90,0.65);
 }
 
 .molecule-controls {
@@ -558,19 +558,30 @@ header {
 .example-note { font-size: 0.95rem !important; color: var(--slate); }
 .example-note em { color: var(--ink); font-style: italic; }
 .example-copy .foco-tag { margin-bottom: 1rem; display: inline-block; }
-.example-figure { margin: 2rem 0 0; }
-.example-figure img {
+.example-panel {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+}
+.example-figures { display: flex; flex-direction: column; gap: 0.7rem; }
+.example-figures figure { margin: 0; }
+.example-figures img {
   width: 100%;
   display: block;
   border-radius: 10px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 6px 18px rgba(27,39,64,0.08);
 }
-.example-figure figcaption {
-  margin-top: 0.9rem;
-  font-size: 0.9rem;
+.example-figcaption {
+  font-size: 0.82rem;
   color: var(--slate);
   font-style: italic;
   max-width: none;
+  margin: 0.2rem 0 0;
+}
+@media (max-width: 900px) {
+  .example-panel { grid-template-columns: 1fr; }
+  .example-figures { max-width: 340px; margin: 0 auto; }
 }
 
 /* ---------- Funding & partnerships ---------- */
