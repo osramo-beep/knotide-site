@@ -158,10 +158,16 @@
         </div>
         <div class="design-visual">
           <div class="molecule-frame">
-            <canvas id="molecule-canvas" aria-label="Interactive rotating 3D model of a designed peptide docked at a target binding surface" role="img"></canvas>
+            <canvas id="molecule-canvas" aria-label="Interactive rotating 3D model showing a designed protein blocking a toxin complex from reaching a cellular receptor" role="img"></canvas>
+            <div class="block-indicator" aria-hidden="true">
+              <span class="block-arrow"></span>
+              <span class="block-x">&times;</span>
+            </div>
             <div class="molecule-legend">
-              <span><i class="dot dot-body"></i>Target protein</span>
-              <span><i class="dot dot-peptide"></i>Peptide ligand</span>
+              <span><i class="dot dot-toxin"></i>Toxin</span>
+              <span><i class="dot dot-peptide"></i>Designed protein</span>
+              <span><i class="dot dot-receptor"></i>Cellular receptor</span>
+              <span><i class="dot dot-membrane"></i>Cellular membrane</span>
             </div>
           </div>
           <div class="molecule-controls">
@@ -238,9 +244,13 @@
       <div class="example-panel">
         <div class="example-copy">
           <span class="foco-tag">Illustrative example</span>
-          <p>In our lead application, a Knotide Bio peptide is designed to neutralise the toxin a pathogen needs to damage its host, rather than relying on broad antimicrobial activity, an approach we are extending to other pathogens, targets and species within the platform.</p>
+          <p>In our lead application, a Knotide Bio protein is designed to neutralise the toxin a pathogen needs to damage its host, rather than relying on broad antimicrobial activity, an approach we are extending to other pathogens, targets and species within the platform.</p>
           <p class="example-note">Knotide Bio's first application case is <em>AHPND in shrimp aquaculture</em>, chosen for its regulatory urgency, market size and a well-characterised molecular target. Sea lice in salmon aquaculture is the platform's second application, sharing the same core mechanism and administration routes already used by the industry.</p>
         </div>
+        <figure class="example-figure">
+          <img src="images/mechanism-comparison-diagram.webp" alt="Diagram comparing the PirA/PirB toxin complex binding the Lv-APN1 receptor with the designed protein blocker preventing that binding, including a close-up inset of the blocking interaction and the cellular membrane where the receptor is anchored." loading="lazy">
+          <figcaption>Mechanism of action: the designed protein blocker occupies the site the PirA/PirB toxin complex needs to bind the Lv-APN1 receptor, preventing intoxication of the host cell.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
