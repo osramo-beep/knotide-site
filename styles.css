@@ -374,16 +374,16 @@ header {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
-  background: rgba(255,255,255,0.82);
-  backdrop-filter: blur(4px);
   border-radius: 10px;
-  padding: 0.6rem 0.8rem;
+  padding: 0.4rem 0.2rem;
   font-size: 0.78rem;
+  font-weight: 600;
   color: var(--ink);
+  text-shadow: 0 0 5px rgba(255,255,255,0.9), 0 0 9px rgba(255,255,255,0.85);
   pointer-events: none;
 }
 .molecule-legend span { display: flex; align-items: center; gap: 0.5rem; }
-.molecule-legend .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.molecule-legend .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex-shrink: 0; box-shadow: 0 0 0 2px rgba(255,255,255,0.85); }
 .dot-toxin { background: #3B5FC4; }
 .dot-peptide { background: #E08A2E; }
 .dot-receptor { background: #9DBBA0; }
@@ -575,6 +575,13 @@ header {
   display: block;
   border-radius: 10px;
   box-shadow: 0 6px 18px rgba(27,39,64,0.08);
+}
+.example-figure-letter {
+  text-align: center;
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
 }
 .example-figcaption {
   font-size: 0.82rem;
