@@ -593,6 +593,7 @@ header {
   .molecule-controls { flex-wrap: nowrap; gap: 0.35rem; }
   .mol-btn { font-size: 0.72rem; padding: 0.4rem 0.6rem; white-space: nowrap; }
   .mol-btn-icon { padding: 0.4rem 0.55rem; }
+  .molecule-caption { font-size: 0.72rem; background: none; border: none; padding: 0; }
 }
 
 /* ---------- Funding & partnerships ---------- */
