@@ -360,7 +360,7 @@ header {
   background: #F6F7F9;
   box-shadow: var(--shadow);
   border-radius: 14px;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 620 / 1116;
   overflow: hidden;
   position: relative;
   cursor: grab;
@@ -590,6 +590,9 @@ header {
 }
 @media (max-width: 560px) {
   .example-figures-row { grid-template-columns: 1fr; }
+  .molecule-controls { flex-wrap: nowrap; gap: 0.35rem; }
+  .mol-btn { font-size: 0.72rem; padding: 0.4rem 0.6rem; white-space: nowrap; }
+  .mol-btn-icon { padding: 0.4rem 0.55rem; }
 }
 
 /* ---------- Funding & partnerships ---------- */
