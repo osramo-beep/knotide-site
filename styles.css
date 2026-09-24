@@ -352,6 +352,7 @@ header {
   gap: clamp(32px, 6vw, 80px);
   align-items: center;
 }
+.design-visual { max-width: 560px; margin: 0 auto; width: 100%; }
 .design-copy h3 { font-size: 1.4rem; }
 .design-copy h4 { font-size: 1.15rem; margin-top: 1.6rem; }
 .design-copy p { color: var(--slate); font-size: 1.02rem; }
@@ -360,7 +361,7 @@ header {
   background: #F6F7F9;
   box-shadow: var(--shadow);
   border-radius: 14px;
-  aspect-ratio: 620 / 1116;
+  aspect-ratio: 900 / 737;
   overflow: hidden;
   position: relative;
   cursor: grab;
@@ -427,24 +428,24 @@ header {
 .molecule-controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.32rem;
   margin-top: 1rem;
 }
 .mol-btn {
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--ink);
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 100px;
-  padding: 0.5rem 1.1rem;
+  padding: 0.4rem 0.65rem;
   cursor: pointer;
   transition: border-color 0.15s ease, color 0.15s ease;
 }
 .mol-btn:hover { border-color: var(--accent); color: var(--accent-dark); }
 .mol-btn[aria-pressed="false"] { color: var(--accent); border-color: var(--accent); }
-.mol-btn-icon { padding: 0.5rem 0.9rem; line-height: 1; }
+.mol-btn-icon { padding: 0.4rem 0.55rem; line-height: 1; }
 
 .molecule-caption {
   margin: 0.8rem 0 0;
@@ -581,7 +582,8 @@ header {
   font-weight: 700;
   color: var(--ink);
   margin-top: 0.5rem;
-  font-size: 0.95rem;
+  font-size: 0.72rem;
+  line-height: 1.3;
 }
 .example-figcaption {
   font-size: 0.82rem;
