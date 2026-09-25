@@ -234,6 +234,7 @@ header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+  align-items: start;
 }
 .stat-num {
   font-family: var(--font-display);
