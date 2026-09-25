@@ -69,7 +69,7 @@
   const PX_PER_FRAME = 7;
 
   let zoom = 1;
-  const MIN_ZOOM = 1, MAX_ZOOM = 2.3;
+  const MIN_ZOOM = 0.7, MAX_ZOOM = 2.3;
   function applyZoom() { canvas.style.transform = 'scale(' + zoom + ')'; }
 
   function scheduleIdleResume() {
